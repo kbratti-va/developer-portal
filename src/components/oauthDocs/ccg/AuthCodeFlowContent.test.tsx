@@ -6,9 +6,15 @@ import { FlagsProvider, getFlags } from '../../../flags';
 
 import { getActiveCCGApis, lookupApiByFragment } from '../../../apiDefs/query';
 import store from '../../../store';
+import { isApiDeactivated } from '../../../apiDefs/deprecated';
+import { APIDescription } from '../../../apiDefs/schema';
+import apiDefs from '../../../apiDefs/data/categories';
+import { setApis } from '../../../actions';
 import { AuthCodeFlowContent } from './AuthCodeFlowContent';
 
 describe('Auth Flow Content', () => {
+  store.dispatch(setApis(apiDefs));
+
   beforeEach(() => {
     const selectedOption = 'fhir';
     const apiDef = lookupApiByFragment(selectedOption);

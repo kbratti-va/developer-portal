@@ -27,16 +27,14 @@ interface APICheckboxListProps {
 
 const ApiCheckboxList = ({ apiCheckboxes, authType }: APICheckboxListProps): JSX.Element => {
   const formValues = useFormikContext<Values>().values;
-  const hostedApis = apiCheckboxes.filter(
-    api =>
-      !api.vaInternalOnly ||
-      (APPLY_INTERNAL_APIS.includes(api.urlFragment) &&
-        isHostedApiEnabled(api.urlFragment, api.enabledByDefault)),
-  );
 
   return (
     <>
-      {hostedApis.map(api => {
+      {apiCheckboxes.filter(
+          api =>
+            !api.vaInternalOnly  ||
+            APPLY_INTERNAL_APIS.includes(api.urlFragment),
+        ).map(api => {
         const apiCheckboxName = api.altID ?? api.urlFragment;
         const internalApiSelected =
           formValues.apis.includes(`${authType}/${apiCheckboxName}`) && api.vaInternalOnly;
@@ -73,10 +71,6 @@ const ApiCheckboxList = ({ apiCheckboxes, authType }: APICheckboxListProps): JSX
     </>
   );
 };
-
-const authCodeApis = getAllAuthCodeApis();
-const ccgApis = getAllCCGApis();
-const keyAuthApis = getAllKeyAuthApis();
 
 interface SelectedApisProps {
   selectedApis: string[];
@@ -143,7 +137,7 @@ const SelectedAPIs = ({ selectedApis }: SelectedApisProps): JSX.Element => {
           legendClassName={classNames('vads-u-font-size--lg', 'vads-u-padding-left--1p5')}
           name="standardApis"
         >
-          <ApiCheckboxList apiCheckboxes={keyAuthApis} authType="apikey" />
+          <ApiCheckboxList apiCheckboxes={getAllKeyAuthApis()} />
         </FieldSet>
         <FieldSet
           className={classNames(
@@ -156,22 +150,8 @@ const SelectedAPIs = ({ selectedApis }: SelectedApisProps): JSX.Element => {
           legendClassName={classNames('vads-u-font-size--lg', 'vads-u-padding-left--1p5')}
           name="oauthApis"
         >
-          <ApiCheckboxList apiCheckboxes={authCodeApis} authType="acg" />
-          {authCodeApiSelected && <OAuthAcgAppInfo />}
-        </FieldSet>
-        <FieldSet
-          className={classNames(
-            'vads-u-margin-top--2',
-            'vads-u-padding-bottom--1p5',
-            ccgApisBorderClass,
-            ccgApisBorderColorClass,
-          )}
-          legend="Client credentials grant APIs:"
-          legendClassName={classNames('vads-u-font-size--lg', 'vads-u-padding-left--1p5')}
-          name="ccgApis"
-        >
-          <ApiCheckboxList apiCheckboxes={ccgApis} authType="ccg" />
-          {ccgApiSelected && <OAuthCcgAppInfo />}
+          <ApiCheckboxList apiCheckboxes={getAllOauthApis()} />
+          {oauthApisSelected && <OAuthAppInfo />}
         </FieldSet>
       </div>
     </fieldset>

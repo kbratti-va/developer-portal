@@ -2,6 +2,7 @@ import AlertBox from '@department-of-veterans-affairs/component-library/AlertBox
 import classNames from 'classnames';
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
+import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router';
 import {
   PAGE_HEADER_AND_HALO_ID,
@@ -76,10 +77,12 @@ const APIReleaseNote = ({
       </h2>
       {api.deactivationInfo && isApiDeactivated(api) && (
         <AlertBox headline="Deactivated API" status="info">
-          {api.deactivationInfo.deactivationContent({})}
+          <ReactMarkdown>{api.deactivationInfo.deactivationContent}</ReactMarkdown>
         </AlertBox>
       )}
-      {api.releaseNotes({})}
+      <div>
+        <ReactMarkdown>{api.releaseNotes}</ReactMarkdown>
+      </div>
       <hr />
     </Flag>
   );

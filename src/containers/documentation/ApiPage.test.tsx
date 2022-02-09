@@ -215,7 +215,8 @@ describe('ApiPage', () => {
             ...lotrRingsApi,
             deactivationInfo: {
               ...unmetDeactivationInfo,
-              deprecationDate: moment().subtract(1, 'year'),
+              deprecationDate: moment().subtract(1, 'year')
+                                       .format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
             },
           },
         ],
@@ -232,8 +233,8 @@ describe('ApiPage', () => {
     });
 
     it('renders deprecation info', () => {
-      expect(screen.queryByTestId('deprecation-info')).not.toBeNull();
-      expect(screen.queryByTestId('deactivation-info')).toBeNull();
+      expect(screen.queryByText('test-data::: This API is deprecated')).not.toBeNull();
+      expect(screen.queryByText('test-data::: This API is deactivated')).toBeNull();
     });
   });
 });

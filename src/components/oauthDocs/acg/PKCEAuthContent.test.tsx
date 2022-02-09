@@ -6,9 +6,15 @@ import { FlagsProvider, getFlags } from '../../../flags';
 
 import { getActiveOauthApis, lookupApiByFragment } from '../../../apiDefs/query';
 import store from '../../../store';
+import { isApiDeactivated } from '../../../apiDefs/deprecated';
+import { APIDescription } from '../../../apiDefs/schema';
+import apiDefs from '../../../apiDefs/data/categories';
+import { setApis } from '../../../actions';
 import { PKCEAuthContent } from './PKCEAuthContent';
 
 describe('Auth Flow Content', () => {
+  store.dispatch(setApis(apiDefs));
+
   beforeEach(() => {
     const selectedOption = 'veteran_verification';
     const apiDef = lookupApiByFragment(selectedOption);

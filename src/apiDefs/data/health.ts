@@ -8,7 +8,6 @@
  * used in all developer portal environments for health documentation.
  */
 
-import moment from 'moment';
 import { OPEN_API_SPEC_HOST } from '../../types/constants';
 import {
   ArgonautReleaseNotes,
@@ -64,7 +63,7 @@ const healthApis: APIDescription[] = [
     },
     oAuthTypes: ['AuthorizationCodeGrant'],
     openData: false,
-    releaseNotes: ClinicalHealthReleaseNotes,
+    releaseNotes: ClinicalHealthReleaseNotes.toString(),
     urlFragment: 'clinical_health',
     vaInternalOnly: true,
   },
@@ -96,7 +95,7 @@ const healthApis: APIDescription[] = [
     },
     oAuthTypes: ['AuthorizationCodeGrant'],
     openData: false,
-    releaseNotes: CommunityCareReleaseNotes,
+    releaseNotes: CommunityCareReleaseNotes.toString(),
     urlFragment: 'community_care',
     vaInternalOnly: false,
   },
@@ -119,16 +118,16 @@ const healthApis: APIDescription[] = [
   },
   {
     deactivationInfo: {
-      deactivationContent: UrgentCareDeactivationNotice,
-      deactivationDate: moment('20 Jul 2020 00:00 EDT'),
-      deprecationContent: UrgentCareDeprecationNotice,
-      deprecationDate: moment('13 Jul 2020 00:00 EDT'),
+      deactivationContent: UrgentCareDeactivationNotice.toString(),
+      deactivationDate: '20 Jul 2020 00:00 EDT',
+      deprecationContent: UrgentCareDeprecationNotice.toString(),
+      deprecationDate: '13 Jul 2020 00:00 EDT',
     },
     description:
       "The VA's Health Urgent Care Eligibility API supports industry standards (e.g., Fast Healthcare Interoperability Resources [FHIR]) and provides access to a Veteran's urgent care eligibility status.",
     docSources: [
       {
-        apiIntro: UrgentCareApiIntro,
+        apiIntro: UrgentCareApiIntro.toString(),
         openApiUrl: `${swaggerHost}/services/fhir/v0/r4/openapi.json`,
       },
     ],
@@ -137,7 +136,7 @@ const healthApis: APIDescription[] = [
     name: 'Urgent Care Eligibility API (FHIR)',
     oAuth: true,
     openData: false,
-    releaseNotes: UrgentCareReleaseNotes,
+    releaseNotes: UrgentCareReleaseNotes.toString(),
     urlFragment: 'urgent_care',
     vaInternalOnly: false,
   },
@@ -176,7 +175,7 @@ const healthApis: APIDescription[] = [
     },
     oAuthTypes: ['ClientCredentialsGrant'],
     openData: false,
-    releaseNotes: PgdReleaseNotes,
+    releaseNotes: PgdReleaseNotes.toString(),
     urlFragment: 'pgd',
     vaInternalOnly: true,
   },
@@ -192,14 +191,14 @@ const healthApis: APIDescription[] = [
         openApiUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-r4/v0/openapi.json`,
       },
       {
-        apiIntro: FhirArgonautApiIntro,
+        apiIntro: FhirArgonautApiIntro.toString(),
         key: 'argonaut',
         label: 'Argonaut',
         metadataUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-argonaut/metadata.json`,
         openApiUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-argonaut/v0/openapi.json`,
       },
       {
-        apiIntro: FhirDSTU2ApiIntro,
+        apiIntro: FhirDSTU2ApiIntro.toString(),
         key: 'dstu2',
         label: 'DSTU2',
         metadataUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-dstu2/metadata.json`,
@@ -208,7 +207,7 @@ const healthApis: APIDescription[] = [
     ],
     enabledByDefault: true,
     lastProdAccessStep: ProdAccessFormSteps.Four,
-    multiOpenAPIIntro: FHIRMultiOpenAPIIntro,
+    multiOpenAPIIntro: FHIRMultiOpenAPIIntro.toString(),
     name: 'Veterans Health API (FHIR)',
     oAuth: true,
     oAuthInfo: {
@@ -264,7 +263,7 @@ const healthApis: APIDescription[] = [
     },
     oAuthTypes: ['AuthorizationCodeGrant', 'ClientCredentialsGrant'],
     openData: false,
-    releaseNotes: FhirApiReleaseNotes,
+    releaseNotes: FhirApiReleaseNotes.toString(),
     urlFragment: 'fhir',
     vaInternalOnly: false,
   },
@@ -342,11 +341,11 @@ const healthApis: APIDescription[] = [
   },
   {
     deactivationInfo: {
-      deactivationContent: HealthArgonautDeactivationNotice,
+      deactivationContent: HealthArgonautDeactivationNotice.toString(),
       // see the RFC 2822 date format section here: https://momentjs.com/docs/#/parsing/string-format/
-      deactivationDate: moment('01 Oct 2019 00:00 EDT'),
-      deprecationContent: HealthArgonautDeprecationNotice,
-      deprecationDate: moment('15 Sep 2019 00:00 EDT'),
+      deactivationDate: '01 Oct 2019 00:00 EDT',
+      deprecationContent: HealthArgonautDeprecationNotice.toString(),
+      deprecationDate: '15 Sep 2019 00:00 EDT',
     },
     description:
       'Both the legacy API endpoints and this legacy documentation will no longer be accessible beginning Oct 1, 2019.',
@@ -360,7 +359,7 @@ const healthApis: APIDescription[] = [
     name: 'Veterans Health API (Legacy)',
     oAuth: true,
     openData: false,
-    releaseNotes: ArgonautReleaseNotes,
+    releaseNotes: ArgonautReleaseNotes.toString(),
     urlFragment: 'argonaut',
     vaInternalOnly: false,
   },

@@ -1,6 +1,7 @@
 export * from './actions/apply';
 export * from './actions/oauthApiSelection';
 export * from './actions/version';
+export * from './actions/apiList';
 
 export const CURRENT_VERSION_IDENTIFIER = 'current';
 export const DEFAULT_OAUTH_API_SELECTION = 'claims';
@@ -17,6 +18,7 @@ export const CONTACT_US_URL = `${BACKEND_BASE_URL}/contact-us`;
 const LPB_BACKEND_BASE_URL = '/platform-backend';
 export const LPB_APPLY_URL = `${LPB_BACKEND_BASE_URL}/v0/consumers/applications`;
 export const LPB_PRODUCTION_ACCESS_URL = `${LPB_BACKEND_BASE_URL}/v0/consumers/production-requests`;
+export const LPB_PROVIDERS_URL = `${LPB_BACKEND_BASE_URL}/v0/providers/transformations/legacy.json`;
 export const LPB_CONTACT_US_URL = `${LPB_BACKEND_BASE_URL}/v0/support/contact-us/requests`;
 
 export const APPLY_ACG_APIS = ['claims', 'communityCare', 'health', 'verification'];
