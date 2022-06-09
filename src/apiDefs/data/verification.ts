@@ -48,7 +48,7 @@ const verificationApis: APIDescription[] = [
     },
     oAuthTypes: ['ClientCredentialsGrant'],
     openData: false,
-    releaseNotes: VaLetterGeneratorReleaseNotes,
+    releaseNotes: VaLetterGeneratorReleaseNotes.toString(),
     urlFragment: 'va_letter_generator',
     vaInternalOnly: true,
     veteranRedirect: {

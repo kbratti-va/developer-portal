@@ -13,7 +13,6 @@ import {
 import { APIDescription } from '../../../../apiDefs/schema';
 import { Flag } from '../../../../flags';
 import { FLAG_HOSTED_APIS, APPLY_INTERNAL_APIS } from '../../../../types/constants';
-import { isHostedApiEnabled } from '../../../../apiDefs/env';
 import { OAuthAcgAppInfo } from './OAuthAcgAppInfo';
 import { OAuthCcgAppInfo } from './OAuthCcgAppInfo';
 import { InternalOnlyInfo } from './InternalOnlyInfo';
@@ -137,7 +136,7 @@ const SelectedAPIs = ({ selectedApis }: SelectedApisProps): JSX.Element => {
           legendClassName={classNames('vads-u-font-size--lg', 'vads-u-padding-left--1p5')}
           name="standardApis"
         >
-          <ApiCheckboxList apiCheckboxes={getAllKeyAuthApis()} />
+          <ApiCheckboxList apiCheckboxes={getAllKeyAuthApis()} authType="apikey" />
         </FieldSet>
         <FieldSet
           className={classNames(
@@ -150,8 +149,22 @@ const SelectedAPIs = ({ selectedApis }: SelectedApisProps): JSX.Element => {
           legendClassName={classNames('vads-u-font-size--lg', 'vads-u-padding-left--1p5')}
           name="oauthApis"
         >
-          <ApiCheckboxList apiCheckboxes={getAllOauthApis()} />
-          {oauthApisSelected && <OAuthAppInfo />}
+          <ApiCheckboxList apiCheckboxes={getAllAuthCodeApis()} authType="acg" />
+          {authCodeApiSelected && <OAuthAcgAppInfo />}
+        </FieldSet>
+        <FieldSet
+          className={classNames(
+            'vads-u-margin-top--2',
+            'vads-u-padding-bottom--1p5',
+            ccgApisBorderClass,
+            ccgApisBorderColorClass,
+          )}
+          legend="Client credentials grant APIs:"
+          legendClassName={classNames('vads-u-font-size--lg', 'vads-u-padding-left--1p5')}
+          name="ccgApis"
+        >
+          <ApiCheckboxList apiCheckboxes={getAllCCGApis()} authType="ccg" />
+          {ccgApiSelected && <OAuthCcgAppInfo />}
         </FieldSet>
       </div>
     </fieldset>
