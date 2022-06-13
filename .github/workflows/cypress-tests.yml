@@ -58,7 +58,7 @@ jobs:
           runTests: false
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        run: npm run test:e2e:ci
         with:
           install: false
           start: npm start
