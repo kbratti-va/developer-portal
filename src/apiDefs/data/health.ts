@@ -119,9 +119,9 @@ const healthApis: APIDescription[] = [
   {
     deactivationInfo: {
       deactivationContent: UrgentCareDeactivationNotice.toString(),
-      deactivationDate: '20 Jul 2020 00:00 EDT',
+      deactivationDate: '2020-07-20T00:00:00.000-04:00',
       deprecationContent: UrgentCareDeprecationNotice.toString(),
-      deprecationDate: '13 Jul 2020 00:00 EDT',
+      deprecationDate: '2020-07-13T00:00:00.000-04:00',
     },
     description:
       "The VA's Health Urgent Care Eligibility API supports industry standards (e.g., Fast Healthcare Interoperability Resources [FHIR]) and provides access to a Veteran's urgent care eligibility status.",
