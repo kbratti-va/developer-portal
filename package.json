@@ -13,7 +13,7 @@
     "test:unit": "node scripts/test.js --projects=unit.jest.config.js",
     "test:unit:ci": "node scripts/test.js --projects=unit.jest.config.js --ci --testResultsProcessor=\"./node_modules/jest-junit-reporter\" --runInBand --coverage",
     "test:e2e": "./node_modules/.bin/cypress run",
-    "test:e2e:ci": "./scripts/cypress_test.sh",
+    "test:e2e:ci": "./scripts/cypress_test.sh run",
     "test:monitoring": "./node_modules/.bin/cypress run -s ./cypress/integration/App.spec.js",
     "test:accessibility": "node scripts/test.js --projects=accessibility.jest.config.js --runInBand",
     "test:accessibility:ci": "./scripts/test.sh --projects=accessibility.jest.config.js --ci --testResultsProcessor='./node_modules/jest-junit-reporter' --forceExit --runInBand",
