@@ -337,7 +337,7 @@
         }
       },
       {
-        "altID": "health",
+        "altID": "clinicalHealth",
         "description": "Use to develop clinical-facing applications that improve access to and management of patient health data.",
         "docSources": [
           {
