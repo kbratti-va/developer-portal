@@ -279,6 +279,47 @@
     "properName": "Health APIs",
     "apis": [
       {
+        "altID": "clinicalHealth",
+        "description": "Use to develop clinical-facing applications that improve access to and management of patient health data.",
+        "docSources": [
+          {
+            "metadataUrl": "http://localhost:3000/internal/docs/fhir-clinical-health/metadata.json",
+            "key": null,
+            "label": null,
+            "apiIntro": null
+          }
+        ],
+        "enabledByDefault": true,
+        "lastProdAccessStep": 3,
+        "name": "Clinical Health API (FHIR)",
+        "openData": false,
+        "releaseNotes": "### August 16, 2021\n\nLaunch of the Clinical Health API\n",
+        "urlFragment": "clinical_health",
+        "vaInternalOnly": true,
+        "oAuth": true,
+        "oAuthInfo": {
+          "acgInfo": {
+            "baseAuthPath": "/oauth2/clinical-health/v1",
+            "scopes": [
+              "profile",
+              "openid",
+              "offline_access",
+              "fhirUser",
+              "launch",
+              "patient/Condition.read",
+              "patient/Observation.read",
+              "patient/Patient.read",
+              "patient/Practitioner.read"
+            ]
+          }
+        },
+        "oAuthTypes": [
+          "AuthorizationCodeGrant"
+        ],
+        "veteranRedirect": null,
+        "multiOpenAPIIntro": null
+      },
+      {
         "altID": "communityCare",
         "description": "VA's Community Care Eligibility API utilizes VA's Facility API, VA's Enrollment & Eligibility system and others to satisfy requirements found in the VA's MISSION Act of 2018.",
         "docSources": [
@@ -335,45 +376,6 @@
           "deactivationContent": "Our Urgent Care Eligibility API was deactivated on July 20, 2020. The API and related \ndocumentation is no longer accessible. For more information, [contact us](/support/contact-us) \nor visit our [Google Developer Forum](https://groups.google.com/forum/m/#!forum/va-lighthouse).\n",
           "deactivationDate": "2020-07-20T00:00:00.000-04:00"
         }
-      },
-      {
-        "altID": "clinicalHealth",
-        "description": "Use to develop clinical-facing applications that improve access to and management of patient health data.",
-        "docSources": [
-          {
-            "metadataUrl": "http://localhost:3000/internal/docs/fhir-clinical-health/metadata.json",
-            "key": null,
-            "label": null,
-            "apiIntro": null
-          }
-        ],
-        "enabledByDefault": true,
-        "lastProdAccessStep": 3,
-        "name": "Clinical Health API (FHIR)",
-        "openData": false,
-        "releaseNotes": "### August 16, 2021\n\nLaunch of the Clinical Health API\n",
-        "urlFragment": "clinical_health",
-        "vaInternalOnly": true,
-        "oAuth": true,
-        "oAuthInfo": {
-          "acgInfo": {
-            "baseAuthPath": "/oauth2/clinical-health/v1",
-            "scopes": [
-              "profile",
-              "openid",
-              "offline_access",
-              "fhirUser",
-              "launch",
-              "patient/Condition.read",
-              "patient/Observation.read",
-              "patient/Patient.read",
-              "patient/Practitioner.read"
-            ]
-          }
-        },
-        "oAuthTypes": null,
-        "veteranRedirect": null,
-        "multiOpenAPIIntro": null
       },
       {
         "altID": "health",
