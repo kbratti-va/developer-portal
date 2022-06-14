@@ -57,8 +57,11 @@ jobs:
         with:
           runTests: false
 
+      - name: Start Fake LPB Server
+        run: ./scripts/fake_lpb.sh
+
       - name: Cypress run
-        run: npm run test:e2e:ci
+        uses: cypress-io/github-action@v2
         with:
           install: false
           start: npm start
