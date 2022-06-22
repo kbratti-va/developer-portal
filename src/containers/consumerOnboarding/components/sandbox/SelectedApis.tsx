@@ -10,9 +10,10 @@ import {
   includesCcgAPI,
   getAllCCGApis,
 } from '../../../../apiDefs/query';
-import { APIDescription } from '../../../../apiDefs/schema';
+import { APIDescription, VaInternalOnly } from '../../../../apiDefs/schema';
 import { Flag } from '../../../../flags';
-import { FLAG_HOSTED_APIS, APPLY_INTERNAL_APIS } from '../../../../types/constants';
+import { FLAG_HOSTED_APIS } from '../../../../types/constants';
+import { isHostedApiEnabled } from '../../../../apiDefs/env';
 import { OAuthAcgAppInfo } from './OAuthAcgAppInfo';
 import { OAuthCcgAppInfo } from './OAuthCcgAppInfo';
 import { InternalOnlyInfo } from './InternalOnlyInfo';
@@ -26,18 +27,20 @@ interface APICheckboxListProps {
 
 const ApiCheckboxList = ({ apiCheckboxes, authType }: APICheckboxListProps): JSX.Element => {
   const formValues = useFormikContext<Values>().values;
+  const hostedApis = apiCheckboxes.filter(
+    api =>
+      (!api.vaInternalOnly || api.vaInternalOnly !== VaInternalOnly.StrictlyInternal) &&
+      isHostedApiEnabled(api.urlFragment, api.enabledByDefault),
+  );
 
   return (
     <>
-      {apiCheckboxes.filter(
-          api =>
-            !api.vaInternalOnly  ||
-            APPLY_INTERNAL_APIS.includes(api.urlFragment),
-        ).map(api => {
+      {hostedApis.map(api => {
         const apiCheckboxName = api.altID ?? api.urlFragment;
         const internalApiSelected =
-          formValues.apis.includes(`${authType}/${apiCheckboxName}`) && api.vaInternalOnly;
-        // console.log(api.vaInternalOnly, authType, apiCheckboxName, internalApiSelected);
+          formValues.apis.includes(`${authType}/${apiCheckboxName}`) &&
+          api.vaInternalOnly &&
+          api.vaInternalOnly === VaInternalOnly.AdditionalDetails;
         return (
           <Flag name={[FLAG_HOSTED_APIS, api.urlFragment]} key={api.urlFragment}>
             <div

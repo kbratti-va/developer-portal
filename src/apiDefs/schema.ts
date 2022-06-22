@@ -74,7 +74,7 @@ export interface APIDescription {
   readonly urlFragment: string;
   readonly description: string;
   readonly enabledByDefault: boolean;
-  readonly vaInternalOnly: boolean;
+  readonly vaInternalOnly?: VaInternalOnly;
   readonly openData: boolean;
   readonly oAuth?: boolean;
   readonly oAuthTypes?: string[];
@@ -129,4 +129,10 @@ export interface APICategory extends BaseAPICategory {
 
 export interface APICategories {
   [key: string]: APICategory;
+}
+
+export enum VaInternalOnly {
+  StrictlyInternal = 1,
+  AdditionalDetails = 2,
+  FlagOnly = 3,
 }

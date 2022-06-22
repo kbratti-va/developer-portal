@@ -14,9 +14,6 @@ import {
   ClinicalHealthReleaseNotes,
   CommunityCareReleaseNotes,
   FhirApiReleaseNotes,
-  FhirArgonautApiIntro,
-  FhirDSTU2ApiIntro,
-  FHIRMultiOpenAPIIntro,
   HealthArgonautDeactivationNotice,
   HealthArgonautDeprecationNotice,
   PgdReleaseNotes,
@@ -26,7 +23,7 @@ import {
   UrgentCareReleaseNotes,
   ProviderDirectoryReleaseNotes,
 } from '../../content/apiDocs/health';
-import { APIDescription, ProdAccessFormSteps } from '../schema';
+import { APIDescription, ProdAccessFormSteps, VaInternalOnly } from '../schema';
 
 const swaggerHost: string = process.env.REACT_APP_VETSGOV_SECONDARY_SWAGGER_API ?? '';
 const healthApis: APIDescription[] = [
@@ -65,7 +62,7 @@ const healthApis: APIDescription[] = [
     openData: false,
     releaseNotes: ClinicalHealthReleaseNotes.toString(),
     urlFragment: 'clinical_health',
-    vaInternalOnly: true,
+    vaInternalOnly: VaInternalOnly.StrictlyInternal,
   },
   {
     altID: 'communityCare',
@@ -97,7 +94,6 @@ const healthApis: APIDescription[] = [
     openData: false,
     releaseNotes: CommunityCareReleaseNotes.toString(),
     urlFragment: 'community_care',
-    vaInternalOnly: false,
   },
   {
     altID: 'providerDirectory',
@@ -114,7 +110,6 @@ const healthApis: APIDescription[] = [
     openData: false,
     releaseNotes: ProviderDirectoryReleaseNotes.toString(),
     urlFragment: 'provider_directory',
-    vaInternalOnly: false,
   },
   {
     deactivationInfo: {
@@ -138,7 +133,6 @@ const healthApis: APIDescription[] = [
     openData: false,
     releaseNotes: UrgentCareReleaseNotes.toString(),
     urlFragment: 'urgent_care',
-    vaInternalOnly: false,
   },
   {
     altID: 'pgd',
@@ -177,95 +171,7 @@ const healthApis: APIDescription[] = [
     openData: false,
     releaseNotes: PgdReleaseNotes.toString(),
     urlFragment: 'pgd',
-    vaInternalOnly: true,
-  },
-  {
-    altID: 'health',
-    description:
-      'Use the OpenID Connect and SMART on FHIR standards to allow Veterans to authorize third-party applications to access data on their behalf.',
-    docSources: [
-      {
-        key: 'r4',
-        label: 'R4',
-        metadataUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-r4/metadata.json`,
-        openApiUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-r4/v0/openapi.json`,
-      },
-      {
-        apiIntro: FhirArgonautApiIntro.toString(),
-        key: 'argonaut',
-        label: 'Argonaut',
-        metadataUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-argonaut/metadata.json`,
-        openApiUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-argonaut/v0/openapi.json`,
-      },
-      {
-        apiIntro: FhirDSTU2ApiIntro.toString(),
-        key: 'dstu2',
-        label: 'DSTU2',
-        metadataUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-dstu2/metadata.json`,
-        openApiUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-dstu2/v0/openapi.json`,
-      },
-    ],
-    enabledByDefault: true,
-    lastProdAccessStep: ProdAccessFormSteps.Four,
-    multiOpenAPIIntro: FHIRMultiOpenAPIIntro.toString(),
-    name: 'Veterans Health API (FHIR)',
-    oAuth: true,
-    oAuthInfo: {
-      acgInfo: {
-        baseAuthPath: '/oauth2/health/v1',
-        scopes: [
-          'profile',
-          'openid',
-          'offline_access',
-          'launch/patient',
-          'patient/AllergyIntolerance.read',
-          'patient/Appointment.read',
-          'patient/Condition.read',
-          'patient/Device.read',
-          'patient/DeviceRequest.read',
-          'patient/DiagnosticReport.read',
-          'patient/Encounter.read',
-          'patient/Immunization.read',
-          'patient/Location.read',
-          'patient/Medication.read',
-          'patient/MedicationOrder.read',
-          'patient/MedicationRequest.read',
-          'patient/MedicationStatement.read',
-          'patient/Observation.read',
-          'patient/Organization.read',
-          'patient/Patient.read',
-          'patient/Practitioner.read',
-          'patient/PractitionerRole.read',
-          'patient/Procedure.read',
-        ],
-      },
-      ccgInfo: {
-        baseAuthPath: '/oauth2/health/system/v1',
-        productionAud: 'aus8evxtl123l7Td3297',
-        sandboxAud: 'aus8nm1q0f7VQ0a482p7',
-        scopes: [
-          'launch',
-          'system/AllergyIntolerance.read',
-          'system/Appointment.read',
-          'system/Condition.read',
-          'system/Coverage.read',
-          'system/Coverage.write',
-          'system/DiagnosticReport.read',
-          'system/Immunization.read',
-          'system/Location.read',
-          'system/Medication.read',
-          'system/MedicationOrder.read',
-          'system/Observation.read',
-          'system/Organization.read',
-          'system/Patient.read',
-        ],
-      },
-    },
-    oAuthTypes: ['AuthorizationCodeGrant', 'ClientCredentialsGrant'],
-    openData: false,
-    releaseNotes: FhirApiReleaseNotes.toString(),
-    urlFragment: 'fhir',
-    vaInternalOnly: false,
+    vaInternalOnly: VaInternalOnly.StrictlyInternal,
   },
   {
     altID: 'health',
@@ -277,7 +183,7 @@ const healthApis: APIDescription[] = [
         openApiUrl: `${OPEN_API_SPEC_HOST}/internal/docs/fhir-r4/v0/openapi.json`,
       },
     ],
-    enabledByDefault: false,
+    enabledByDefault: true,
     lastProdAccessStep: ProdAccessFormSteps.Four,
     name: 'Patient Health API (FHIR)',
     oAuth: true,
@@ -335,8 +241,7 @@ const healthApis: APIDescription[] = [
     oAuthTypes: ['AuthorizationCodeGrant', 'ClientCredentialsGrant'],
     openData: false,
     releaseNotes: FhirApiReleaseNotes.toString(),
-    urlFragment: 'patient_health',
-    vaInternalOnly: false,
+    urlFragment: 'fhir',
     versionSelectorLabel: 'Select a FHIR specification',
   },
   {
@@ -361,7 +266,6 @@ const healthApis: APIDescription[] = [
     openData: false,
     releaseNotes: ArgonautReleaseNotes.toString(),
     urlFragment: 'argonaut',
-    vaInternalOnly: false,
   },
 ];
 

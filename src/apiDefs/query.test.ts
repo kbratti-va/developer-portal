@@ -51,7 +51,6 @@ const facilities: APIDescription = {
   openData: true,
   releaseNotes: FacilitiesReleaseNotes.toString(),
   urlFragment: 'facilities',
-  vaInternalOnly: false,
   veteranRedirect: {
     linkText: "Find the facility that's right for you",
     linkUrl: 'https://www.va.gov/find-locations/',
@@ -88,7 +87,6 @@ const claims: APIDescription = {
   openData: false,
   releaseNotes: ClaimsReleaseNotes.toString(),
   urlFragment: 'claims',
-  vaInternalOnly: false,
   veteranRedirect: {
     linkText: 'benefits or appeals claim status',
     linkUrl: 'https://www.va.gov/claim-or-appeal-status/',
@@ -112,7 +110,6 @@ const confirmation: APIDescription = {
   openData: false,
   releaseNotes: VeteranConfirmationReleaseNotes.toString(),
   urlFragment: 'veteran_confirmation',
-  vaInternalOnly: false,
 };
 
 const verification: APIDescription = {
@@ -146,7 +143,6 @@ const verification: APIDescription = {
   openData: false,
   releaseNotes: VeteranVerificationReleaseNotes.toString(),
   urlFragment: 'veteran_verification',
-  vaInternalOnly: false,
 };
 
 describe('query module', () => {
@@ -187,7 +183,7 @@ describe('query module', () => {
       const healthApi = lookupApiCategory('health');
       expect(healthApi).not.toBeNull();
       expect(healthApi?.apis.length).toBeGreaterThanOrEqual(4);
-      expect(healthApi?.apis.map(api => !!api.oAuth).filter(m => m).length).toEqual(7);
+      expect(healthApi?.apis.map(api => !!api.oAuth).filter(m => m).length).toEqual(6);
 
       const verificationApi = lookupApiCategory('verification');
       expect(verificationApi).not.toBeNull();

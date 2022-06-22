@@ -19,7 +19,6 @@ const vaFormsApis: APIDescription[] = [
     openData: true,
     releaseNotes: VAFormsReleaseNotes.toString(),
     urlFragment: 'vaForms',
-    vaInternalOnly: false,
     veteranRedirect: vaFormsContent.veteranRedirect,
   },
 ];

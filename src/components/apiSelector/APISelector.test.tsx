@@ -32,7 +32,6 @@ const options: APIDescription[] = [
     openData: false,
     releaseNotes: ClaimsReleaseNotes.toString(),
     urlFragment: 'claims',
-    vaInternalOnly: false,
   },
 ];
 
