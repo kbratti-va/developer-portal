@@ -132,7 +132,7 @@ export interface APICategories {
 }
 
 export enum VaInternalOnly {
-  StrictlyInternal = 1,
-  AdditionalDetails = 2,
-  FlagOnly = 3,
+  StrictlyInternal = 'StrictlyInternal',
+  AdditionalDetails = 'AdditionalDetails',
+  FlagOnly = 'FlagOnly',
 }
