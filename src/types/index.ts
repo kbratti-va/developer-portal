@@ -1,6 +1,13 @@
+import { compose } from 'redux';
 import { APICategories } from '../apiDefs/schema';
 
 export * from './forms/apply';
+
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
 export interface APINameParam {
   apiName?: string;

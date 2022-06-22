@@ -23,8 +23,7 @@ const getApiDefinitions = (): APICategories => {
   return state.apiList.apis;
 };
 
-const getApiCategoryOrder = (): string[] =>
-  Object.keys(getApiDefinitions());
+const getApiCategoryOrder = (): string[] => Object.keys(getApiDefinitions());
 
 const getActiveApiDefinitions = (): APICategories => {
   const output: APICategories = {};
@@ -92,8 +91,9 @@ const lookupApiByFragment = (apiKey: string): APIDescription | null => {
   return apiResult ?? null;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- should check category existence
-const lookupApiCategory = (categoryKey: string): APICategory | null => getApiDefinitions()[categoryKey] ?? null;
+const lookupApiCategory = (categoryKey: string): APICategory | null =>
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  getApiDefinitions()[categoryKey] ?? null;
 
 const apisFor = (
   selectedApiList: string[],
