@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { SetOAuthAPISelection, setOAuthApiSelection } from '../../actions';
+import { getApisLoaded } from '../../apiDefs/query';
 import { APIDescription } from '../../apiDefs/schema';
 
 import './APISelector.scss';
@@ -14,6 +15,7 @@ interface APISelectorProps {
 }
 
 const APISelector = (props: APISelectorProps): JSX.Element => {
+  const apisLoaded = getApisLoaded();
   const dispatch: React.Dispatch<SetOAuthAPISelection> = useDispatch();
   const [selectedOptionOverride, setSelectedOptionOverride] = React.useState<string>();
 
@@ -47,6 +49,7 @@ const APISelector = (props: APISelectorProps): JSX.Element => {
               value={selectedOptionOverride ? selectedOptionOverride : selectedOption}
               onChange={onSelectionChange}
             >
+              {!apisLoaded && <option value="">Loading...</option>}
               {props.options.map(item => (
                 <option value={item.urlFragment} key={item.urlFragment}>
                   {item.name}
@@ -66,6 +69,7 @@ const APISelector = (props: APISelectorProps): JSX.Element => {
     return (
       <div className="api-selector">
         <select onChange={onSelectionChange} value={selectedOption} aria-label={selectLabel}>
+          {!apisLoaded && <option value="">Loading...</option>}
           {options.map(item => (
             <option value={item.urlFragment} key={item.urlFragment}>
               {item.name}

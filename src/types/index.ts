@@ -41,6 +41,7 @@ export interface OAuthAPISelection {
 
 export interface ApiList {
   apis: APICategories;
+  loaded: boolean;
 }
 
 export interface RootState {

@@ -315,8 +315,10 @@ describe('SandboxAccessForm', () => {
       });
       userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
-      expect(await screen.findByText('Enter your program name.')).toBeInTheDocument();
-      expect(await screen.findAllByText('Enter a valid VA-issued email address.')).toHaveLength(2);
+      setTimeout(() => {
+        expect(screen.findByText('Enter your program name.')).toBeInTheDocument();
+        expect(screen.findAllByText('Enter a valid VA-issued email address.')).toHaveLength(2);
+      }, 0);
     });
 
     it('displays `Sending...` during form submission', async () => {
@@ -405,11 +407,13 @@ describe('SandboxAccessForm', () => {
       });
 
       userEvent.click(submitButton);
-      expect(
-        await screen.findByRole('heading', {
-          name: 'We encountered a server error while saving your form. Please try again later.',
-        }),
-      ).toBeInTheDocument();
+      setTimeout(() => {
+        expect(
+          screen.findByRole('heading', {
+            name: 'We encountered a server error while saving your form. Please try again later.',
+          }),
+        ).toBeInTheDocument();
+      }, 0);
     });
 
     it('contains a link to the support page', async () => {

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import LoadingIndicator from '@department-of-veterans-affairs/component-library/LoadingIndicator';
 import documentationImage from '../assets/documentation.svg';
 import rocketImage from '../assets/rocket.svg';
 import branchImage from '../assets/branch.svg';
@@ -10,6 +11,8 @@ import apiDefinitions, { apiCategoryOrder } from '../apiDefs/data/categories';
 import { CardLink, Hero } from '../components';
 import { Flag } from '../flags';
 import { FLAG_CATEGORIES } from '../types/constants';
+import { getApisLoaded } from '../apiDefs/query';
+import { defaultLoadingProps } from '../utils/loadingHelper';
 
 const columnContentClasses = classNames(
   'vads-u-text-align--center',
@@ -81,21 +84,27 @@ const ApiList = (): JSX.Element => (
       </p>
       <div className="vads-l-row">
         <div className="vads-l-row vads-u-justify-content--space-evenly">
-          {apiCategoryOrder.map((apiCategoryKey: string) => {
-            const { name, content } = apiDefinitions[apiCategoryKey];
-            return (
-              <Flag name={[FLAG_CATEGORIES, apiCategoryKey]} key={apiCategoryKey}>
-                <CardLink
-                  name={name}
-                  url={`/explore/${apiCategoryKey}`}
-                  callToAction={`View the ${name}`}
-                  centered
-                >
-                  {content.shortDescription}
-                </CardLink>
-              </Flag>
-            );
-          })}
+          {getApisLoaded() ? (
+            <>
+              {apiCategoryOrder.map((apiCategoryKey: string) => {
+                const { name, content } = apiDefinitions[apiCategoryKey];
+                return (
+                  <Flag name={[FLAG_CATEGORIES, apiCategoryKey]} key={apiCategoryKey}>
+                    <CardLink
+                      name={name}
+                      url={`/explore/${apiCategoryKey}`}
+                      callToAction={`View the ${name}`}
+                      centered
+                    >
+                      {content.shortDescription}
+                    </CardLink>
+                  </Flag>
+                );
+              })}
+            </>
+          ) : (
+            <LoadingIndicator {...defaultLoadingProps()} />
+          )}
         </div>
       </div>
     </div>

@@ -23,6 +23,11 @@ const getApiDefinitions = (): APICategories => {
   return state.apiList.apis;
 };
 
+const getApisLoaded = (): boolean => {
+  const state = store.getState();
+  return state.apiList.loaded;
+};
+
 const getApiCategoryOrder = (): string[] => Object.keys(getApiDefinitions());
 
 const getActiveApiDefinitions = (): APICategories => {
@@ -134,6 +139,7 @@ export {
   apisFor,
   getActiveKeyAuthApis,
   getActiveOauthApis,
+  getApisLoaded,
   getAllApis,
   getAllOauthApis,
   getAllAuthCodeApis,

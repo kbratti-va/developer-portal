@@ -2,6 +2,7 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { ErrorMessage, useFormikContext } from 'formik';
+import LoadingIndicator from '@department-of-veterans-affairs/component-library/LoadingIndicator';
 import { CheckboxRadioField, FieldSet, ApiTags } from '../../../../components';
 import {
   getAllKeyAuthApis,
@@ -9,11 +10,13 @@ import {
   includesAuthCodeAPI,
   includesCcgAPI,
   getAllCCGApis,
+  getApisLoaded,
 } from '../../../../apiDefs/query';
 import { APIDescription, VaInternalOnly } from '../../../../apiDefs/schema';
 import { Flag } from '../../../../flags';
 import { FLAG_HOSTED_APIS } from '../../../../types/constants';
 import { isHostedApiEnabled } from '../../../../apiDefs/env';
+import { defaultLoadingProps } from '../../../../utils/loadingHelper';
 import { OAuthAcgAppInfo } from './OAuthAcgAppInfo';
 import { OAuthCcgAppInfo } from './OAuthCcgAppInfo';
 import { InternalOnlyInfo } from './InternalOnlyInfo';
@@ -78,6 +81,7 @@ interface SelectedApisProps {
   selectedApis: string[];
 }
 
+// eslint-disable-next-line complexity
 const SelectedAPIs = ({ selectedApis }: SelectedApisProps): JSX.Element => {
   const { errors } = useFormikContext<Values>();
   const checkboxName = 'apis';
@@ -133,6 +137,7 @@ const SelectedAPIs = ({ selectedApis }: SelectedApisProps): JSX.Element => {
           <ErrorMessage name="apis" />
         </span>
         <p className="vads-u-padding-x--1p5">You can always request access to more APIs later.</p>
+        {!getApisLoaded() && <LoadingIndicator {...defaultLoadingProps()} />}
         <FieldSet
           className={classNames('vads-u-margin-top--2')}
           legend="Standard APIs:"
