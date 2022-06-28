@@ -16,7 +16,7 @@
 import store from '../store';
 import { isHostedApiEnabled } from './env';
 import { isApiDeactivated } from './deprecated';
-import { APICategories, APICategory, APIDescription } from './schema';
+import { APICategories, APICategory, APIDescription, VaInternalOnly } from './schema';
 
 const getApiDefinitions = (): APICategories => {
   const state = store.getState();
@@ -132,6 +132,9 @@ const includesCcgAPI = (apiList: string[]): boolean =>
 const includesInternalOnlyAPI = (apiList: string[]): boolean =>
   apisFor(apiList).some(api => api.vaInternalOnly);
 
+const includesInternalSponsorshipAPI = (apiList: string[]): boolean =>
+  apisFor(apiList).some(api => api.vaInternalOnly === VaInternalOnly.AdditionalDetails);
+
 const onlyOpenDataAPIs = (apiList: string[]): boolean =>
   apisFor(apiList).every(api => api.openData);
 
@@ -157,5 +160,6 @@ export {
   includesCcgAPI,
   getAllKeyAuthApis,
   includesInternalOnlyAPI,
+  includesInternalSponsorshipAPI,
   onlyOpenDataAPIs,
 };
