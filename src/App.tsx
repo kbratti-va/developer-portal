@@ -38,7 +38,7 @@ const App = (): JSX.Element => {
   React.useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     apisRequest();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -63,7 +63,7 @@ const App = (): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state: RootState): APICategories =>
-  state.apiList.apis;
+const mapStateToProps = (state: RootState): APICategories => state.apiList.apis;
 
+// eslint-disable-next-line react-redux/prefer-separate-component-file
 export default connect(mapStateToProps)(App);
